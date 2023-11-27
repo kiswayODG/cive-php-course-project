@@ -1,0 +1,1 @@
+here all files about static component and resources of our poject.

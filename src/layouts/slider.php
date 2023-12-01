@@ -6,10 +6,10 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
+                            <h1>Test</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl pellentesque, faucibus libero eu, gravida quam. </p>
                             <div class="button">
-                                <a href="#" class="btn">Get Appointment</a>
+                                <a href="#" class="btn">details</a>
                                 <a href="#" class="btn primary">Learn More</a>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
+                            <h1>Lorem ipsum</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl pellentesque, faucibus libero eu, gravida quam. </p>
                             <div class="button">
                                 <a href="#" class="btn">Get Appointment</a>
@@ -41,10 +41,10 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
+                            <h1>Luban</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl pellentesque, faucibus libero eu, gravida quam. </p>
                             <div class="button">
-                                <a href="#" class="btn">Get Appointment</a>
+                                <a href="#" class="btn">Details</a>
                                 <a href="#" class="btn primary">Conatct Now</a>
                             </div>
                         </div>

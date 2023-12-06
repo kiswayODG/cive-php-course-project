@@ -11,11 +11,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="http://localhost/projet/resources/administration/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-<link href="http://localhost/projet/resources/administration/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+<link href="/resources/administration/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="/projet/resources/administration/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
 <!-- Customized Bootstrap Stylesheet -->
-<link rel="stylesheet" href="http://localhost/projet/resources/administration/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/administration/css/bootstrap.min.css">
 
 <!-- Template Stylesheet -->
-<link href="http://localhost/projet/resources/administration/css/style.css" rel="stylesheet">
+<link href="/resources/administration/css/style.css" rel="stylesheet">

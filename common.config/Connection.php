@@ -1,17 +1,23 @@
 <?php
-class Config{
-public function getConnect()
-{
-    $dbms='mysql';
-    $dbhost = 'localhost:3306';
-    $dbuser = 'root';
-    $dbpass = '';
-    $db = 'shanghai_journey_db';
-    $conn = new PDO($dbms,$dbhost,$db, $dbuser, $dbpass);
 
-    if (!$conn) {
-        return 'error';
+class Connection
+{
+    private string $host = "localhost:3306";
+    private string $db = "projet";
+    private string $login = "root";
+    private string $password = "";
+
+    public function conn(): PDO|string
+    {
+        $bddconn='';
+        try
+        {
+            $bddconn = new PDO('mysql:host='.$this->host.';dbname='.$this->db, $this->login, $this->password);
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed " . $e->getMessage();
+        }
+        return $bddconn;
     }
-    return $conn;
-}
 }

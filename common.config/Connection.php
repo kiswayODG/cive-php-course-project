@@ -1,15 +1,17 @@
 <?php
-function getConnect()
+class Config{
+public function getConnect()
 {
-
+    $dbms='mysql';
     $dbhost = 'localhost:3306';
     $dbuser = 'root';
     $dbpass = '';
     $db = 'shanghai_journey_db';
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
+    $conn = new PDO($dbms,$dbhost,$db, $dbuser, $dbpass);
 
     if (!$conn) {
         return 'error';
     }
     return $conn;
+}
 }

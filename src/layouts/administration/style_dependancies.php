@@ -1,5 +1,5 @@
 <!-- Favicon -->
-<link href="http://localhost/projet/resources/administration/img/favicon.ico" rel="icon">
+<link href="/resources/administration/img/favicon.ico" rel="icon">
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
 
 <!-- Libraries Stylesheet -->
 <link href="/resources/administration/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-<link href="/projet/resources/administration/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+<link href="/resources/administration/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
 <!-- Customized Bootstrap Stylesheet -->
 <link rel="stylesheet" href="/resources/administration/css/bootstrap.min.css">

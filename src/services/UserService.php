@@ -21,28 +21,5 @@ class UserService
       
       include('src/home.php');
    }
-   public function createUserFromForm(): void
-   {
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-         $user = new User();
-         $user->setId($_POST["id"]);
-         $user->setUsername($_POST["uname"]);
-         $user->setEmail($_POST["email"]);
-         $user->setPassword(password_hash($_POST["pass"], PASSWORD_DEFAULT));
-
-         if (!empty($user->getId())) {
-            $this->userRepo->updateUser($user);
-        } else {
-            $this->userRepo->saveUser($user);
-        }
-        
-         header('Location: /user/profile.php'); 
-         exit();
-      } else {
-         include 'views/create_user_form.php';
-      }
-   }
-
-   // ...
+  
 }

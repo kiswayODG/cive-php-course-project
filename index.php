@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once('src/model/User.php');
+require_once('src/services/UserService.php');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <meta name="description" content="">
-    <meta name='copyright' content=''>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php include_once('src/layouts/style_dependancies.php') ?>
-</head>
+$ucontroller = new UserService();
 
-<body>
-    <?php include_once('src/layouts/header.php') ?>
+$requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-    <?php include_once('src/layouts/slider.php') ?>
-
-    <?php include_once('src/layouts/footer.php') ?>
-</body>
-<?php include_once('src/layouts/js_scripts_dependancies.php') ?>
-
-</html>
+switch ($requestPath) {
+    case '/index.php':
+        $ucontroller->index();
+    case '/':
+        $ucontroller->index();
+}

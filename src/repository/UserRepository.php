@@ -7,6 +7,12 @@ public function __construct(PDO $pdo) {
 $this->pdo = $pdo;
 }
 
+public function getUserAll() {
+    $stmt = $this->pdo->prepare("SELECT * FROM users");
+    $users = $stmt->fetchAll();
+    return $users;
+    }
+
 public function saveUser(User $user): void {
 $stmt = $this->pdo->prepare("INSERT INTO users ( username, password, email) VALUES (?, ?, ?, ?)");
 $stmt->execute([ $user->getUsername(), $user->getPassword(), $user->getEmail()]);

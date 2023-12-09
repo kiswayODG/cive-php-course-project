@@ -16,6 +16,11 @@ class UserService
       $this->userRepo = new UserRepository($this->conect->conn());
    }
 
+   public function index(){
+      // all process about index view can be do here
+      
+      include('src/home.php');
+   }
    public function createUserFromForm(): void
    {
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -32,10 +32,18 @@ $router->map('GET','/admin/users',function(){
     $admincontroller->showUsers();
 });
 
-$router->map('GET|POST','/user/[i:id]/edition',function(){
+
+$router->map('GET','/admin/get-user-details/[i:id]',function($id){
     $admincontroller = new AdminService();
-    $admincontroller->editUser();
+    $admincontroller->getUser($id);
 });
+
+$router->map('POST','/delete-user',function(){
+    $admincontroller = new AdminService();
+    $admincontroller->deleteUser();
+});
+
+
 
 $router->map('GET|POST','/admin/store-user',function(){
     $admincontroller = new AdminService();
@@ -45,5 +53,4 @@ $router->map('GET|POST','/admin/store-user',function(){
 $match = $router->match();
 if ($match!==null){
     call_user_func_array($match['target'],$match['params']);
-    $match['target']();
 }

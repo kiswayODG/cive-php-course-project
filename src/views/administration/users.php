@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <?php
-    include_once( 'src/layouts/administration/style_dependancies.php'); ?>
+    include_once('src/layouts/administration/style_dependancies.php'); ?>
 </head>
 
 <body>
@@ -28,11 +28,13 @@
             <div class="col-12 p-0">
                 <div class=" rounded h-100 p-4">
 
-            
+
                     <h4 class="mb-4 mt-4">Users Table</h4>
                     <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#userModal">Add user</button>
-                    <p class="<?php echo isset($_SESSION['actionResult']) ? 'alert alert-success' : '' ?> "><?php echo isset($_SESSION['actionResult']) ? $_SESSION['actionResult'] : '';  unset($_SESSION['actionResult']); ?></p>
+                    <p class="<?php echo isset($_SESSION['actionResult']) ? 'alert alert-success' : '' ?> "><?php echo isset($_SESSION['actionResult']) ? $_SESSION['actionResult'] : '';
+                                                                                                            unset($_SESSION['actionResult']); ?></p>
                     <div class="table-responsive">
+
                         <table class="table table-striped" id="userTable">
                             <thead>
                                 <tr>
@@ -43,19 +45,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                             foreach ($users as $user) {
-                                echo '<tr>';
-                                echo '<th scope="row">' . $user->getId() . '</th>';
-                                echo '<td>' . $user->getUsername() . '</td>';
-                                echo '<td>' . $user->getEmail() . '</td>';
-                                echo '<td>';
-                                echo '<button type="button" class="btn btn-info btn-sm">Edit</button> &nbsp;&nbsp;';
-                                echo '<button type="button" class="btn btn-danger btn-sm ml-2">Delete</button>';
-                                echo '</td>';
-                                echo '</tr>';
-                            }
-                            ?>
+                                <?php
+                                foreach ($users as $user) {
+                                    echo '<tr>';
+                                    echo '<th scope="row">' . $user->getId() . '</th>';
+                                    echo '<td>' . $user->getUsername() . '</td>';
+                                    echo '<td>' . $user->getEmail() . '</td>';
+                                    echo '<td>';
+                                    echo '<button type="submit" value="' . $user->getId() . '" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#userModal" data-userid="' . $user->getId() . '">Edit</button> &nbsp;&nbsp;';
+                                    echo '<button type="submit" value="' . $user->getId() . '" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal' . $user->getId() . '" data-userid="' . $user->getId() . '">Delete</button> &nbsp;&nbsp;';
+                                    echo '</td>';
+                                    echo '</tr>';
+
+                                    echo <<<HTML
+                                    <div class="modal fade" id="deleteModal{$user->getId()}" tabindex="-1" aria-labelledby="deleteModalLabel{$user->getId()}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <form action="/delete-user" method="POST">
+                                                <input hidden type="text" name="user_id" value={$user->getId()}>
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel{$user->getId()}">Confirmation de suppression</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Êtes-vous sûr de vouloir supprimer cet utilisateur ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                </div>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                HTML;
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -89,9 +114,46 @@
 <!-- Template Javascript -->
 <script src="/resources/administration/js/main.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#userTable').DataTable({
-            "dom": 'rtip',})
+            "dom": 'rtip',
+        })
+
+
+        $('#userModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var userId = button.data('userid');
+            var modal = $(this);
+            if (userId) {
+                $.ajax({
+                    url: '/admin/get-user-details/' + userId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log('User details:', data);
+                        modal.find('#id').val(data.id);
+                        modal.find('#uname').val(data.username);
+                        modal.find('#email').val(data.email);
+                        modal.find('#title').text('User editing');
+                        $("#pass").hide();
+                        $('#submit').val('update');
+                    },
+                    error: function(error) {
+                        console.log('Error fetching user details:', error);
+                    }
+                });
+            }
+            $('#userModal').on('hidden.bs.modal', function() {
+                modal.find('#id').val('');
+                modal.find('#uname').val('');
+                modal.find('#email').val('');
+                modal.find('#password').val('');
+                modal.find('#title').text('User registering');
+                modal.find('submit').val('create');
+                $("#pass").show();
+            });
+        });
+
     })
 </script>
 

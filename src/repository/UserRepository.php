@@ -11,12 +11,12 @@ class UserRepository
 
     public function getUserAll()
     {
-       
+
         $stmt = $this->pdo->prepare("SELECT * FROM users");
         $stmt->execute();
         $users = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $user = new User($row['username'],"", $row['email']);
+            $user = new User($row['username'], "", $row['email']);
             $user->setId($row['id']);
             $users[] = $user;
         }
@@ -35,18 +35,21 @@ class UserRepository
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->execute([$userId]);
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$userData) {
+        if ($userData) {
+            $user = new User();
+            $user->setId($userData['id']);
+            $user->setUsername($userData['username']);
+            $user->setEmail($userData['email']);
+            return $user;
+        }else{
             return null;
         }
-
-        return new User($userData['id'], $userData['username'], $userData['password'], $userData['email']);
     }
 
     public function updateUser(User $user): void
     {
-        $stmt = $this->pdo->prepare("UPDATE users SET username = ?, password = ?, email = ? WHERE id = ?");
-        $stmt->execute([$user->getUsername(), $user->getPassword(), $user->getEmail(), $user->getId()]);
+        $stmt = $this->pdo->prepare("UPDATE users SET username = ?, email = ? WHERE id = ?");
+        $stmt->execute([$user->getUsername(), $user->getEmail(), $user->getId()]);
     }
 
     public function deleteUser(User $user): void

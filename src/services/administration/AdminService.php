@@ -16,37 +16,71 @@ class AdminService
       $this->userRepo = new UserRepository($this->conect->conn());
    }
 
-   public function index(){
+   public function index()
+   {
       // all process about index view can be do here
-      
+
       include('src/views/administration/admin_home.php');
    }
 
-   public function showUsers(){
-
-    include('src/views/administration/users.php');
+   public function showUsers()
+   {
+      $users = $this->userRepo->getUserAll();
+      include_once('src/views/administration/users.php');
    }
+
    public function createUserFromForm(): void
    {
-      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST["submit"] == "create") {
          $user = new User();
-         $user->setId($_POST["id"]);
          $user->setUsername($_POST["uname"]);
          $user->setEmail($_POST["email"]);
-         $user->setPassword(password_hash($_POST["pass"], PASSWORD_DEFAULT));
+         $user->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
 
-         if (!empty($user->getId())) {
-            $this->userRepo->updateUser($user);
-        } else {
-            $this->userRepo->saveUser($user);
-        }
-        
-         header('Location: /user/profile.php'); 
+         $this->userRepo->saveUser($user);
+         $actionResult = "User " . $user->getUsername() . " created with success !";
+         $_SESSION['actionResult'] = $actionResult;
+         header('Location: /admin/users');
          exit();
-      } else {
-         include 'views/create_user_form.php';
       }
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST["submit"] == "update") {
+
+         $user = new User();
+         $user->setId($_POST["user_id"]);
+         $user->setUsername($_POST["uname"]);
+         $user->setEmail($_POST["email"]);
+
+         $this->userRepo->updateUser($user);
+         $actionResult = "User " . $user->getUsername() . " updated with success !";
+         $_SESSION['actionResult'] = $actionResult;
+         header('Location: /admin/users');
+      }
+   }
+
+   public function deleteUser()
+   {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['user_id']) {
+         $id = $_POST['user_id'];
+         $user = $this->userRepo->getUserById($id);
+         $this->userRepo->deleteUser($user);
+      }
+      $actionResult = "User deleted with success !";
+      $_SESSION['actionResult'] = $actionResult;
+      header('Location: /admin/users');
+   }
+
+   public function getUser($id)
+   {
+      $user = $this->userRepo->getUserById($id);
+      $userData = array(
+         'id' => $user->getId(),
+         'username' => $user->getUsername(),
+         'email' => $user->getEmail(),
+      );
+      http_response_code(200);
+      header('Content-Type: application/json');
+      echo json_encode($userData);
    }
 
    // ...

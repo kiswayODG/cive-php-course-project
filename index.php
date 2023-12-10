@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('src/model/User.php');
 require_once('src/services/UserService.php');
 require_once('src/services/administration/AdminService.php');
@@ -20,7 +21,29 @@ $router->map('GET','/index',function(){
     $ucontroller->index();
 });
 
+$router->map('GET','/admin',function(){
+    $admincontroller = new AdminService();
+    $admincontroller->index();
+});
+
+
+$router->map('GET','/admin/users',function(){
+    $admincontroller = new AdminService();
+    $admincontroller->showUsers();
+});
+
+$router->map('GET|POST','/user/[i:id]/edition',function(){
+    $admincontroller = new AdminService();
+    $admincontroller->editUser();
+});
+
+$router->map('GET|POST','/admin/store-user',function(){
+    $admincontroller = new AdminService();
+    $admincontroller->createUserFromForm();
+});
+
 $match = $router->match();
 if ($match!==null){
+    call_user_func_array($match['target'],$match['params']);
     $match['target']();
 }

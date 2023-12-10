@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="users.php" class="nav-item nav-link"><i class="fas fa-user-friends me-2 "></i>Users</a>
+            <a href="/admin" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="/admin/users" class="nav-item nav-link"><i class="fas fa-user-friends me-2 "></i>Users</a>
 
 
             <div class="nav-item dropdown">

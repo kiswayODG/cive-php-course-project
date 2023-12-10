@@ -9,28 +9,31 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/src/layouts/administration/style_dependancies.php'); ?>
+    <?php
+    include_once( 'src/layouts/administration/style_dependancies.php'); ?>
 </head>
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
 
-        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/src/layouts/administration/spinner.php'); ?>
+        <?php include_once('src/layouts/administration/spinner.php'); ?>
 
-        <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/src/layouts/administration/sideBar.php'); ?>
+        <?php include_once('src/layouts/administration/sideBar.php'); ?>
 
 
         <!-- Content Start -->
         <div class="content">
-            <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/src/layouts/administration/topBar.php'); ?>
+            <?php include_once('src/layouts/administration/topBar.php'); ?>
 
             <div class="col-12 p-0">
                 <div class=" rounded h-100 p-4">
-                    <h6 class="mb-4 mt-4">Users Table</h6>
-                    <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#userModal">Add user</button>
 
+            
+                    <h4 class="mb-4 mt-4">Users Table</h4>
+                    <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#userModal">Add user</button>
+                    <p class="<?php echo isset($_SESSION['actionResult']) ? 'alert alert-success' : '' ?> "><?php echo isset($_SESSION['actionResult']) ? $_SESSION['actionResult'] : '';  unset($_SESSION['actionResult']); ?></p>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped" id="userTable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -40,24 +43,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>John</td>
-                                    <td>jhon@email.com</td>
-                                    <td>Member</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Mark</td>
-                                    <td>mark@email.com</td>
-                                    <td>Member</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Jacob</td>
-                                    <td>jacob@email.com</td>
-                                    <td>Member</td>
-                                </tr>
+                            <?php
+                             foreach ($users as $user) {
+                                echo '<tr>';
+                                echo '<th scope="row">' . $user->getId() . '</th>';
+                                echo '<td>' . $user->getUsername() . '</td>';
+                                echo '<td>' . $user->getEmail() . '</td>';
+                                echo '<td>';
+                                echo '<button type="button" class="btn btn-info btn-sm">Edit</button> &nbsp;&nbsp;';
+                                echo '<button type="button" class="btn btn-danger btn-sm ml-2">Delete</button>';
+                                echo '</td>';
+                                echo '</tr>';
+                            }
+                            ?>
                             </tbody>
                         </table>
                     </div>
@@ -76,9 +74,11 @@
 
 </body>
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/resources/administration/lib/chart/chart.min.js"></script>
+
 <script src="/resources/administration/lib/easing/easing.min.js"></script>
 <script src="/resources/administration/lib/waypoints/waypoints.min.js"></script>
 <script src="/resources/administration/lib/owlcarousel/owl.carousel.min.js"></script>
@@ -88,5 +88,11 @@
 
 <!-- Template Javascript -->
 <script src="/resources/administration/js/main.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#userTable').DataTable({
+            "dom": 'rtip',})
+    })
+</script>
 
 </html>

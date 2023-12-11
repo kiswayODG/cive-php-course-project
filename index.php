@@ -72,6 +72,27 @@ $router->map('GET|POST','/admin/store-news-class',function(){
 
 
 
+$router->map('GET','/admin/news',function(){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->showNews();
+});
+
+$router->map('GET','/admin/get-news-details/[i:id]',function($id){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->getNewsClass($id);
+});
+
+$router->map('POST','/delete-news',function(){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->deleteNewsClass();
+});
+
+$router->map('GET|POST','/admin/store-news',function(){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->createNewsFromForm();
+});
+
+
 $match = $router->match();
 if ($match!==null){
     call_user_func_array($match['target'],$match['params']);

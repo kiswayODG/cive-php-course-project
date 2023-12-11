@@ -58,5 +58,5 @@ class UserRepository
         $stmt->execute([$user->getId()]);
     }
 
-    // Vous pouvez ajouter d'autres méthodes selon les besoins spécifiques de votre application
+   
 }

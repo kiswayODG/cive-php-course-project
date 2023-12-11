@@ -1,11 +1,11 @@
 <?php
 
 class NewClass {
-    private int $id;
-    private string $className;
-    private string $description;
+    private  $id;
+    private  $className;
+    private  $description;
 
-    public function __construct(int $id, string $className, string $description) {
+    public function __construct( $id='',  $className='',  $description='') {
         $this->id = $id;
         $this->className = $className;
         $this->description = $description;
@@ -15,23 +15,23 @@ class NewClass {
         return $this->id;
     }
 
-    public function setId(int $id): void {
+    public function setId( $id): void {
         $this->id = $id;
     }
 
-    public function getClassName(): string {
+    public function getClassName() {
         return $this->className;
     }
 
-    public function setClassName(string $className): void {
+    public function setClassName( $className): void {
         $this->className = $className;
     }
 
-    public function getDescription(): string {
+    public function getDescription() {
         return $this->description;
     }
 
-    public function setDescription(string $description): void {
+    public function setDescription( $description): void {
         $this->description = $description;
     }
 }

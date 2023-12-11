@@ -83,5 +83,4 @@ class AdminService
       echo json_encode($userData);
    }
 
-   // ...
 }

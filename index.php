@@ -3,6 +3,7 @@ session_start();
 require_once('src/model/User.php');
 require_once('src/services/UserService.php');
 require_once('src/services/administration/AdminService.php');
+require_once('src/services/administration/AdminNewsService.php');
 require_once('AltoRouter.php');
 
 $router = new AltoRouter();
@@ -26,12 +27,10 @@ $router->map('GET','/admin',function(){
     $admincontroller->index();
 });
 
-
 $router->map('GET','/admin/users',function(){
     $admincontroller = new AdminService();
     $admincontroller->showUsers();
 });
-
 
 $router->map('GET','/admin/get-user-details/[i:id]',function($id){
     $admincontroller = new AdminService();
@@ -43,12 +42,35 @@ $router->map('POST','/delete-user',function(){
     $admincontroller->deleteUser();
 });
 
-
-
 $router->map('GET|POST','/admin/store-user',function(){
     $admincontroller = new AdminService();
     $admincontroller->createUserFromForm();
 });
+
+
+
+
+$router->map('GET','/admin/news-class',function(){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->showNewsClass();
+});
+
+$router->map('GET','/admin/get-news-class-details/[i:id]',function($id){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->getNewsClass($id);
+});
+
+$router->map('POST','/delete-news-class',function(){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->deleteNewsClass();
+});
+
+$router->map('GET|POST','/admin/store-news-class',function(){
+    $newscontroller = new AdminNewsService();
+    $newscontroller->createNewsClassFromForm();
+});
+
+
 
 $match = $router->match();
 if ($match!==null){

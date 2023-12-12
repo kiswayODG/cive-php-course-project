@@ -2,12 +2,12 @@
 
 class Connection
 {
-    private string $host = "localhost:3306";
-    private string $db = "projet";
-    private string $login = "root";
-    private string $password = "";
+    private  $host = "localhost:3306";
+    private  $db = "projet";
+    private  $login = "root";
+    private  $password = "";
 
-    public function conn(): PDO|string
+    public function conn()
     {
         $bddconn='';
         try

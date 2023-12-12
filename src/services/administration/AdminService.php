@@ -7,8 +7,8 @@ require_once('common.config/Connection.php');
 
 class AdminService
 {
-   private Connection $conect;
-   private UserRepository $userRepo;
+   private  $conect;
+   private  $userRepo;
 
    public function __construct()
    {

@@ -9,10 +9,10 @@ require_once('common.config/Connection.php');
 
 class AdminNewsService
 {
-   private Connection $conect;
-   private ClassRepository $classRepo;
-   private NewRepository $newsRepo;
-   private UserRepository $userRepo;
+   private  $conect;
+   private  $classRepo;
+   private  $newsRepo;
+   private  $userRepo;
 
    public function __construct()
    {
@@ -155,6 +155,7 @@ class AdminNewsService
          $news = new News();
          $lang = new Language();
          $lang->setId($_POST["language"]);
+         echo $_POST["news_id"];
          $news->setId($_POST["news_id"]);
          $news->setTitle($_POST["title"]);
          $news->setAuthor($this->userRepo->getUserById($_POST["author"]));

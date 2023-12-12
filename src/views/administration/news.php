@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <script src="https://cdn.ckeditor.com/ckeditor5/45.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
 
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/src/layouts/administration/style_dependancies.php'); ?>
 </head>
@@ -59,7 +59,7 @@
                                     echo '<td>' . $new->getAuthor()->getUsername() . '</td>';
                                     echo '<td>' . $new->getPubDate() . '</td>';
                                     echo '<td>';
-                                    echo '<button type="submit" value="' . $new->getId() . '" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#userModal" data-newsid="' . $new->getId() . '">Edit</button> &nbsp;&nbsp;';
+                                    echo '<button type="submit" value="' . $new->getId() . '" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal" data-newsid="' . $new->getId() . '">Edit</button> &nbsp;&nbsp;';
                                     echo '<button type="submit" value="' . $new->getId() . '" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal' . $new->getId() . '" data-newsid="' . $new->getId() . '">Delete</button> &nbsp;&nbsp;';
                                     echo '</td>';
                                     echo '</tr>';
@@ -93,7 +93,6 @@
                     </div>
                 </div>
             </div>
-
 
             <?php include_once('addUpdateNews.php'); ?>
 
@@ -129,28 +128,36 @@
             "dom": 'rtip',
         })
 
-         ClassicEditor
-        .create(document.querySelector('#content'))
-        .catch(error => {
-            console.error(error);
-        });
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                window.editor = editor;
+                Editor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
 
-        $('#userModal').on('show.bs.modal', function(event) {
+
+        $('#newsModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
-            var classId = button.data('classid');
+            var newsId = button.data('newsid');
             var modal = $(this);
-            if (classId) {
+            if (newsId) {
                 $.ajax({
-                    url: '/admin/get-news-class-details/' + classId,
+                    url: '/admin/get-news-details/' + newsId,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-
                         modal.find('#id').val(data.id);
-                        modal.find('#cname').val(data.cname);
-                        modal.find('#desc').val(data.desc);
-                        modal.find('#title').text('Class editing');
+                        modal.find('#title').val(data.title);
+                        modal.find('#author').val(data.author);
+                        modal.find('#pubdate').val(data.pubdate);
+                        modal.find('#newclass').val(data.newclass);
+                        Editor.setData(data.content);
+
+                        modal.find('#head').text('News editing');
                         $('#submit').val('update');
                     },
                     error: function(error) {
@@ -159,10 +166,10 @@
                 });
             }
             $('#userModal').on('hidden.bs.modal', function() {
-                modal.find('#id').val('');
-                modal.find('#cname').val('');
-                modal.find('#desc').val('');
-                modal.find('#title').text('User registering');
+                modal.find('#news_id').val('');
+                modal.find('#pubdate').val('');
+                modal.find('#content').val('');
+                modal.find('#title').text('New registering');
                 modal.find('submit').val('create');
             });
         });

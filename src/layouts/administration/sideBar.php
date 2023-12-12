@@ -19,8 +19,8 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-comment-alt me-2"></i>Communications</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="newsclass.php" class="dropdown-item">News class</a>
-                    <a href="news.php" class="dropdown-item">News</a>
+                    <a href="/admin/news-class" class="dropdown-item">News class</a>
+                    <a href="/admin/news" class="dropdown-item">News</a>
                 </div>
             </div>
             <a href="courses.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Courses</a>

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="title">News registration</h4>
+                <h4 class="modal-title" id="head">News registration</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form action="/admin/store-news" method="POST">
@@ -38,9 +38,9 @@
                     </div>
                     <!-- Deuxième colonne -->
                     <div class="col-6">
-                        <div class="mb-3">
+                        <div class="mb-3" id="container">
                             <label for="content" class="form-label">Content</label>
-                            <textarea style="height: 300px;" class="form-control" name="content" id="content"></textarea>
+                            <textarea style="height: 300px;" class="form-control" name="content" id="editor"></textarea>
                         </div>
                         <!-- Boutons dans la deuxième colonne -->
                         <div class="modal-footer">

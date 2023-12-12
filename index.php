@@ -79,7 +79,7 @@ $router->map('GET','/admin/news',function(){
 
 $router->map('GET','/admin/get-news-details/[i:id]',function($id){
     $newscontroller = new AdminNewsService();
-    $newscontroller->getNewsClass($id);
+    $newscontroller->getNews($id);
 });
 
 $router->map('POST','/delete-news',function(){

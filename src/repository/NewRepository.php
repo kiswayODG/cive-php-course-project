@@ -67,10 +67,10 @@ class NewRepository
         $stmt->execute([$news->getTitle(), $news->getAuthor()->getId(), $news->getPubDate(), $news->getContent(), $news->getNewClass()->getId(), $news->getLanguage()->getId(), $news->getId()]);
     }
     
-    public function deleteNews(News $news): void
+    public function deleteNews(News $news)
     {
         $stmt = $this->pdo->prepare("DELETE FROM news WHERE id = ?");
-        $stmt->execute([$news->getId()]);
+        return $stmt->execute([$news->getId()]);
     }
 
 }

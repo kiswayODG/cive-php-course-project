@@ -119,10 +119,10 @@ class AdminNewsService
    public function deleteNews()
    {
 
-      if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['news_id']) {
-         $id = $_POST['news_id'];
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['new_id']) {
+         $id = $_POST['new_id'];
          $news = $this->newsRepo->getNewById($id);
-         $this->newsRepo->deleteNews($news);
+         $result = $this->newsRepo->deleteNews($news);
       }
       $actionResult = "News deleted with success !";
       $_SESSION['actionResult'] = $actionResult;

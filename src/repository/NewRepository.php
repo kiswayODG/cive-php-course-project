@@ -7,9 +7,9 @@ require_once('src/model/News.php');
 
 class NewRepository
 {
-    private PDO $pdo;
-    private UserRepository $userRepo;
-    private ClassRepository $classRepo;
+    private  $pdo;
+    private  $userRepo;
+    private  $classRepo;
     
 
     public function __construct(PDO $pdo)

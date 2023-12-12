@@ -6,11 +6,11 @@ require_once('Language.php');
 class News {
     private  $id;
     private  $title;
-    private User $author;
+    private  $author;
     private  $pubDate;
     private  $content;
-    private NewClass $newClass;
-    private Language $language;
+    private  $newClass;
+    private  $language;
 
     public function __construct(
          $id="",

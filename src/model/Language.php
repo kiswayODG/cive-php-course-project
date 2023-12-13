@@ -1,18 +1,18 @@
 <?php
 class Language {
-    private int $id;
-    private string $languageName;
+    private  $id;
+    private  $languageName;
 
-    public function __construct(int $id, string $languageName) {
+    public function __construct($id='', $languageName='') {
         $this->id = $id;
         $this->languageName = $languageName;
     }
 
-    public function getId(): int {
+    public function getId() {
         return $this->id;
     }
 
-    public function setId(int $id): void {
+    public function setId( $id): void {
         $this->id = $id;
     }
 

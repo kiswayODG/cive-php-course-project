@@ -1,13 +1,13 @@
 <?php
 
 class Course {
-private int $id;
-private string $courseName;
-private string $courseIntroduction;
-private int $language;
-private string $outline;
+private  $id;
+private  $courseName;
+private  $courseIntroduction;
+private  $language;
+private  $outline;
 
-public function __construct(int $id, string $courseName, string $courseIntroduction, int $language, string $outline) {
+public function __construct( $id,  $courseName,  $courseIntroduction,  $language,  $outline) {
 $this->id = $id;
 $this->courseName = $courseName;
 $this->courseIntroduction = $courseIntroduction;
@@ -15,44 +15,44 @@ $this->language = $language;
 $this->outline = $outline;
 }
 
-public function getId(): int {
+public function getId() {
 return $this->id;
 }
 
-public function setId(int $id): void {
+public function setId(int $id) {
 $this->id = $id;
 }
 
-public function getCourseName(): string {
+public function getCourseName() {
 return $this->courseName;
 }
 
-public function setCourseName(string $courseName): void {
+public function setCourseName( $courseName) {
 $this->courseName = $courseName;
 }
 
-public function getCourseIntroduction(): string {
+public function getCourseIntroduction() {
 return $this->courseIntroduction;
 }
 
-public function setCourseIntroduction(string $courseIntroduction): void {
+public function setCourseIntroduction( $courseIntroduction) {
 $this->courseIntroduction = $courseIntroduction;
 }
 
-public function getLanguage(): int {
+public function getLanguage() {
 return $this->language;
 }
 
-public function setLanguage(int $language): void {
+public function setLanguage( $language) {
 $this->language = $language;
 }
 
 // Getter for outline
-public function getOutline(): string {
+public function getOutline() {
 return $this->outline;
 }
 
-public function setOutline(string $outline): void {
+public function setOutline( $outline) {
 $this->outline = $outline;
 }
 }

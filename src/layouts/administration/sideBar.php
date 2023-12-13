@@ -12,19 +12,15 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="users.php" class="nav-item nav-link"><i class="fas fa-user-friends me-2 "></i>Users</a>
+            <a href="/admin" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="/admin/users" class="nav-item nav-link"><i class="fas fa-user-friends me-2 "></i>Users</a>
+
+            <a href="/admin/news-class" class="nav-item nav-link"><i class="fas fa-sort-alpha-up me-2"></i>News class</a>
+            <a href="/admin/news" class="nav-item nav-link"><i class="fas fa-comment-alt me-2"></i>News</a>
 
 
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-comment-alt me-2"></i>Communications</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="newsclass.php" class="dropdown-item">News class</a>
-                    <a href="news.php" class="dropdown-item">News</a>
-                </div>
-            </div>
             <a href="courses.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Courses</a>
-            <a href="documents.php" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Documents</a>
+            <a href="/admin/docs" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Documents</a>
             <a href="signOut.php" class="nav-item nav-link"><i class="fas fa-sign-out-alt me-2"></i>Sign-out</a>
         </div>
     </nav>
@@ -34,14 +30,14 @@
 <script>
     $(document).ready(function() {
         var currentPath = window.location.pathname;
-       
+
         $('.navbar-nav a.nav-link').removeClass('active');
 
         $('.navbar-nav a.nav-link').each(function() {
             var linkPath = $(this).attr('href');
             if (currentPath.endsWith(linkPath)) {
                 $(this).addClass('active');
-                return false; 
+                return false;
             }
         });
     });

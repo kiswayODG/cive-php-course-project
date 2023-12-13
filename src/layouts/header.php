@@ -19,10 +19,17 @@
                                     <li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
                                         <ul class="dropdown">
                                             <li><a href="index.html">About Luban</a></li>
+                                            <li><a href="index.html">About HUAWEI</a></li>
+                                            <li><a href="index.html">About SSPU</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Gallery </a></li>
-                                    <li><a href="#">Articles </a></li>
+                                    <li><a href="#">Gallery<i class="icofont-rounded-down"></i></a>
+                                        <ul class="dropdown">
+                                            <li><a href="index.html">All</a></li>
+                                            <li><a href="index.html">HUAWEI</a></li>
+                                            <li><a href="index.html">SSPU</a></li>
+                                        </ul></li>
+                                    <li><a href="#">Articles <i class="icofont-rounded-down"></i></a></li>
                                     <li><a href="#">Events <i class="icofont-rounded-down"></i></a>
                                 
 

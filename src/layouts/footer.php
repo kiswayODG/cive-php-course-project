@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-footer">
-                        <h2>About Luban</h2>
-                        <p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
+                        <h2>Luban</h2>
+                        <p>The Luban Workshop is a well-known brand project of international cooperation in vocational education initiated and organized by China in response to the Belt and Road Initiative proposed by General Secretary Xi Jinping, implementing the Ministry of Education's plan to promote the Belt and Road Education Initiative.</p>
                        
                     </div>
                 </div>
@@ -25,7 +25,8 @@
                                 <ul>
                                     
                                 <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Event</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact us</a></li><li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact us</a></li>
+                                    <!-- <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li> -->
                                 </ul>
                             </div>
                         </div>

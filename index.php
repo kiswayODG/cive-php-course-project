@@ -4,6 +4,7 @@ require_once('src/model/User.php');
 require_once('src/services/UserService.php');
 require_once('src/services/administration/AdminService.php');
 require_once('src/services/administration/AdminNewsService.php');
+require_once('src/services/administration/AdminDocService.php');
 require_once('AltoRouter.php');
 
 $router = new AltoRouter();
@@ -91,6 +92,29 @@ $router->map('GET|POST','/admin/store-news',function(){
     $newscontroller = new AdminNewsService();
     $newscontroller->createNewsFromForm();
 });
+
+
+$router->map('GET','/admin/docs',function(){
+    $docscontroller = new AdminDocService();
+    $docscontroller->showDocuments();
+});
+
+$router->map('GET','/admin/get-docs-details/[i:id]',function($id){
+    $docscontroller = new AdminDocService();
+    $docscontroller->getDocument($id);
+});
+
+$router->map('POST','/delete-docs',function(){
+    $docscontroller = new AdminDocService();
+    $docscontroller->deleteDocument();
+});
+
+$router->map('GET|POST','/admin/store-docs',function(){
+    $docscontroller = new AdminDocService();
+    $docscontroller->createOrUpdateDocumentFromForm();
+});
+
+
 
 
 $match = $router->match();

@@ -20,7 +20,7 @@
 
 
             <a href="courses.php" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Courses</a>
-            <a href="documents.php" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Documents</a>
+            <a href="/admin/docs" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Documents</a>
             <a href="signOut.php" class="nav-item nav-link"><i class="fas fa-sign-out-alt me-2"></i>Sign-out</a>
         </div>
     </nav>

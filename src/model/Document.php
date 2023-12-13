@@ -6,7 +6,7 @@ class Document {
     private  $docs;
     private  $language;
 
-    public function __construct( $id,  $title,  $docs,  $language) {
+    public function __construct( $id="",  $title="",  $docs="",  $language=new Language()) {
         $this->id = $id;
         $this->title = $title;
         $this->docs = $docs;

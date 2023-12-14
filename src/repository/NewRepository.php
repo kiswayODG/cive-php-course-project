@@ -36,7 +36,7 @@ class NewRepository
     }
 
     public function getRecentNews() {
-        $stmt = $this->pdo->prepare("SELECT * FROM news ORDER BY pubdate DESC LIMIT 3");
+        $stmt = $this->pdo->prepare("SELECT * FROM news ORDER BY pubdate DESC LIMIT 6");
         $stmt->execute();
         $news = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

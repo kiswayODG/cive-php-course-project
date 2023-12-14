@@ -1,54 +1,39 @@
 <section class="slider">
     <div class="hero-slider">
 
-    <div class="single-slider" style="background-image:url('resources/images/img1.JPG')">
+    <div class="single-slider" style="background-image:url('resources/images/img1.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                        <h1>Students of <span>Burkina Faso;</span> academic and cultural <span>journey in Shanghai!</span></h1>
-                            <p>We are Burkinabe students. We are proud to learn about education and culture in China.
-Burkina Faso is the country of men of integrity. We are faced with several difficulties. Our presence in China is justified by our ambition to quickly and effectively address the main challenges of the agriculture, livestock and IT sectors. The overarching situation to eradicate is the security challenge. </p>
-                            <div class="button">
-                                <a href="#" class="btn">Get Appointment</a>
-                                <a href="#" class="btn primary">Learn More</a>
-                            </div>
+                           
+                        <h1> <br><br> <br>Students of <span>Burkina Faso;</span> academic and cultural <span>journey in Shanghai!</span></h1>
+                          
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="single-slider" style="background-image:url('resources/images/img2.JPG')">
+        <div class="single-slider" style="background-image:url('resources/images/img2.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h1>We are enjoy to <span> live and discover</span> Shanghai education and <span>cultural!</span></h1>
-                            <p>We are Burkinabe students. We are proud to learn about education and culture in China.
-Burkina Faso is the country of men of integrity. We are faced with several difficulties. Our presence in China is justified by our ambition to quickly and effectively address the main challenges of the agriculture, livestock and IT sectors. The overarching situation to eradicate is the security challenge. </p>
-                            <div class="button">
-                                <a href="#" class="btn">Get Appointment</a>
-                                <a href="#" class="btn primary">About Us</a>
-                            </div>
+                            <h1> <br><br> <br>We are enjoy to <span> live and discover</span> Shanghai education and <span>cultural!</span></h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="single-slider" style="background-image:url('resources/images/img4.JPG')">
+        <div class="single-slider" style="background-image:url('resources/images/img3.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="text">
-                            <h1>We come from <span>Burkina Faso</span> and we are <span>students!</span></h1>
-                            <p>We are Burkinabe students. We are proud to learn about education and culture in China.
-Burkina Faso is the country of men of integrity. We are faced with several difficulties. Our presence in China is justified by our ambition to quickly and effectively address the main challenges of the agriculture, livestock and IT sectors. The overarching situation to eradicate is the security challenge.</p>
-                            <div class="button">
-                                <a href="#" class="btn">Get Appointment</a>
-                                <!-- <a href="#" class="btn primary">Contact Now</a> -->
-                            </div>
+                            <h1><br><br> <br> We come from <span>Burkina Faso</span> and we are <span>students!</span></h1>
+                           
                         </div>
                     </div>
                 </div>

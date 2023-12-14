@@ -18,6 +18,11 @@ $router->map('GET','/',function(){
     $ucontroller->index();
 });
 
+$router->map('GET','/news-details/[i:id]',function($id){
+    $ucontroller = new UserService();
+    $ucontroller->news_details();
+});
+
 $router->map('GET','/index',function(){
     $ucontroller = new UserService();
     $ucontroller->index();

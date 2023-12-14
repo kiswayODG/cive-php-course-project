@@ -20,13 +20,12 @@ class AdminNewsService
       $this->classRepo = new ClassRepository($this->conect->conn());
       $this->newsRepo = new NewRepository($this->conect->conn());
       $this->userRepo = new UserRepository($this->conect->conn());
-
    }
 
 
    public function showNewsClass()
    {
-      
+
       $classes = $this->classRepo->getNewsClassAll();
       include_once('src/views/administration/newsclass.php');
    }
@@ -110,6 +109,7 @@ class AdminNewsService
          'content' => $news->getContent(),
          'newclass' => $news->getNewClass()->getId(),
          'language' => $news->getLanguage()->getId(),
+         'illustration' => $news->getIllustration(),
       );
       http_response_code(200);
       header('Content-Type: application/json');
@@ -130,10 +130,9 @@ class AdminNewsService
    }
 
 
-   public function createNewsFromForm(){
-
-      
-      if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST["submit"] == "create") {
+   public function createNewsFromForm()
+   {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          $news = new News();
          $lang = new Language();
          $lang->setId($_POST["language"]);
@@ -142,33 +141,41 @@ class AdminNewsService
          $news->setPubDate($_POST["pubdate"]);
          $news->setContent($_POST["content"]);
          $news->setNewClass($this->classRepo->getClassById($_POST["newclass"]));
-         $news->setLanguage($lang);
-        
-         $this->newsRepo->saveNew($news);
-         $actionResult = "News " . $news->getTitle() . " created with success !";
-         $_SESSION['actionResult'] = $actionResult;
+
+         $targetDir = "resources/storage/";
+
+         if (!empty($_FILES["illustration"]["name"])) {
+            $news->setIllustration($_FILES["illustration"]["name"]);
+            $targetFile = $targetDir . basename($_FILES["illustration"]["name"]);
+
+            $oldFile = $targetDir . $_POST["old_illustration"];
+            if (!empty($_POST["old_illustration"]) && file_exists($oldFile)) {
+               unlink($oldFile);
+            }
+
+            if (!move_uploaded_file($_FILES["illustration"]["tmp_name"], $targetFile)) {
+               $actionResult = "Error uploading the document file.";
+               $_SESSION['actionResult'] = $actionResult;
+               header('Location: /admin/news');
+               exit();
+            }
+         } else {
+
+            $news->setIllustration($_POST["old_illustration"]);
+         }
+
+         if ($_POST["submit"] == "create") {
+            $this->newsRepo->saveNew($news);
+            $actionResult = "News " . $news->getTitle() . " created with success!";
+         } elseif ($_POST["submit"] == "update") {
+            $news->setId($_POST['news_id']);
+            $this->newsRepo->updateNews($news);
+            $actionResult = "News " . $news->getTitle() . " updated with success!";
+         }
+
+         $_SESSION['actionResult'] =  $actionResult;
          header('Location: /admin/news');
          exit();
       }
-      if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST["submit"] == "update") {
-
-         $news = new News();
-         $lang = new Language();
-         $lang->setId($_POST["language"]);
-         echo $_POST["news_id"];
-         $news->setId($_POST["news_id"]);
-         $news->setTitle($_POST["title"]);
-         $news->setAuthor($this->userRepo->getUserById($_POST["author"]));
-         $news->setPubDate($_POST["pubdate"]);
-         $news->setContent($_POST["content"]);
-         $news->setNewClass($this->classRepo->getClassById($_POST["newclass"]));
-         $news->setLanguage($lang);
-
-         $this->newsRepo->updateNews($news);
-         $actionResult = "News " . $news->getTitle() . " updated with success !";
-         $_SESSION['actionResult'] = $actionResult;
-         header('Location: /admin/news');
-      }
-
    }
 }

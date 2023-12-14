@@ -72,7 +72,6 @@ class AdminDocService
             if (!empty($_FILES["doc"]["name"])) {
                 $document->setDocs($_FILES["doc"]["name"]);
                 $targetFile = $targetDir . basename($_FILES["doc"]["name"]);
-                echo($_FILES["doc"]["name"]);
     
                 $oldFile = $targetDir . $_POST["oldname"];
                 if (file_exists($oldFile)) {
@@ -93,6 +92,7 @@ class AdminDocService
                 $this->documentRepo->saveDocument($document);
                 $actionResult = "Document " . $document->getTitle() . " created with success!";
             } elseif ($_POST["submit"] == "update") {
+                
                 $this->documentRepo->updateDocument($document);
                 $actionResult = "Document " . $document->getTitle() . " updated with success!";
             }

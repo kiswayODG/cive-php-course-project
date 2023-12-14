@@ -5,7 +5,7 @@
                 <h4 class="modal-title" id="head">News registration</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form action="/admin/store-news" method="POST">
+            <form action="/admin/store-news" method="POST" enctype="multipart/form-data">
                 <input hidden name="news_id" id="id">
                 <div class="modal-body row">
                     <input hidden type="text" value='2' name="language">
@@ -36,8 +36,15 @@
                             </select>
                         </div>
                     </div>
-                    <!-- Deuxième colonne -->
+
                     <div class="col-6">
+                        <div class="mb-3">
+                            <label for="illustration" class="form-label">Illustration</label>
+                            <input type="file" class="form-control" name="illustration" id="illustration">
+                            <br>
+                            <input type="text" style="display: none;" class="form-control" name="old_illustration" id="old_illustration">
+                        </div>
+
                         <div class="mb-3" id="container">
                             <label for="content" class="form-label">Content</label>
                             <textarea style="height: 300px;" class="form-control" name="content" id="editor"></textarea>

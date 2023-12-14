@@ -10,6 +10,7 @@ class News {
     private  $pubDate;
     private  $content;
     private  $newClass;
+    private $illustration;
     private  $language;
 
     public function __construct(
@@ -19,6 +20,7 @@ class News {
          $pubDate="",
          $content="",
          $newClass=new NewClass(),
+         $illustration="",
          $language=new Language()
     ) {
         $this->id = $id;
@@ -28,6 +30,7 @@ class News {
         $this->content = $content;
         $this->newClass = $newClass;
         $this->language = $language;
+        $this->illustration = $illustration;
     }
 
     public function getId() {
@@ -76,6 +79,14 @@ class News {
 
     public function setNewClass( $newClass): void {
         $this->newClass = $newClass;
+    }
+
+    public function getIllustration() {
+        return $this->illustration;
+    }
+
+    public function setIllustration($illustration): void {
+        $this->illustration = $illustration;
     }
 
     public function getLanguage() {

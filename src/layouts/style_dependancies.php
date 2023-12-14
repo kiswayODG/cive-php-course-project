@@ -6,9 +6,9 @@
     <!-- Nice Select CSS -->
     <link rel="stylesheet" href="/resources/styles/nice-select.css">
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="/resources/styles/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <!-- icofont CSS -->
-    <link rel="stylesheet" href="/resources/styles/icofont.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icofont@1.0.0/dist/icofont.min.css">
     <!-- Slicknav -->
     <link rel="stylesheet" href="/resources/styles/slicknav.min.css">
     <!-- Owl Carousel CSS -->

@@ -1,3 +1,4 @@
+
 <header class="header">
     <div class="header-inner">
         <div class="container">
@@ -16,11 +17,11 @@
                         <div class="main-menu">
                             <nav class="navigation">
                                 <ul class="nav menu">
-                                    <li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
+                                    <li class="active"><a href="/">Home <i class="icofont-rounded-down"></i></a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">About Luban</a></li>
-                                            <li><a href="index.html">About HUAWEI</a></li>
-                                            <li><a href="index.html">About SSPU</a></li>
+                                            <li><a href="http://sspu.edu.cn/">About SSPU</a></li>
+                                            <li><a href="https://www.univ-bobo.gov.bf/accueil">About UNB</a></li>
+                                            <li><a href="https://www.huawei.com/cn/">About HUAWEI</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Gallery<i class="icofont-rounded-down"></i></a>

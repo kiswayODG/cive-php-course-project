@@ -9,6 +9,14 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
     <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+    <style>
+        .preview-image {
+            width: 30px;
+           
+            height: 30px;
+            transition: transform 0.3s;
+        }
+    </style>
 
     <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/src/layouts/administration/style_dependancies.php'); ?>
 </head>
@@ -16,7 +24,15 @@
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
 
-        <?php include_once('src/layouts/administration/spinner.php'); ?>
+        <?php
+        function hasPreview($docUrl)
+        {
+            $imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            $fileExtension = pathinfo($docUrl, PATHINFO_EXTENSION);
+
+            return in_array(strtolower($fileExtension), $imageExtensions);
+        }
+        include_once('src/layouts/administration/spinner.php'); ?>
 
         <?php include_once('src/layouts/administration/sideBar.php'); ?>
 
@@ -44,6 +60,7 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Author</th>
                                     <th scope="col">Categorie</th>
+                                    <th scope="col">Illustration</th>
                                     <th scope="col">Pub date</th>
                                     <th scope="col">Action(s)</th>
                                 </tr>
@@ -54,9 +71,15 @@
                                     echo '<tr>';
                                     echo '<th scope="row">' . $new->getId() . '</th>';
                                     echo '<td>' . $new->getTitle() . '</td>';
-                                    echo '<td>' . $new->getNewClass()->getClassName() . '</td>';
-
                                     echo '<td>' . $new->getAuthor()->getUsername() . '</td>';
+                                    echo '<td>' . $new->getNewClass()->getClassName() . '</td>';
+                                    echo '<td>' ;
+                                    if (hasPreview($new->getIllustration())) {
+                                        echo '<img class="preview-image" src="/resources/storage/' . $new->getIllustration() . '" alt="Preview">';
+                                    } else {
+                                        echo '<i class="fas fa-file-alt fa-2x"></i>';
+                                    }
+                                    echo '</td>' ;
                                     echo '<td>' . $new->getPubDate() . '</td>';
                                     echo '<td>';
                                     echo '<button type="submit" value="' . $new->getId() . '" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#newsModal" data-newsid="' . $new->getId() . '">Edit</button> &nbsp;&nbsp;';
@@ -155,8 +178,9 @@
                         modal.find('#author').val(data.author);
                         modal.find('#pubdate').val(data.pubdate);
                         modal.find('#newclass').val(data.newclass);
+                        $("#old_illustration").show();
+                        modal.find('#old_illustration').val("Old illustration :"+data.illustration);
                         Editor.setData(data.content);
-
                         modal.find('#head').text('News editing');
                         $('#submit').val('update');
                     },

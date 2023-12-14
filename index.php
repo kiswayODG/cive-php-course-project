@@ -1,7 +1,9 @@
 <?php
 session_start();
 require_once('src/model/User.php');
+require_once('src/model/Course.php');
 require_once('src/services/UserService.php');
+require_once('src/services/administration/CourseService.php');
 require_once('src/services/administration/AdminService.php');
 require_once('src/services/administration/AdminNewsService.php');
 require_once('src/services/administration/AdminDocService.php');
@@ -10,6 +12,7 @@ require_once('AltoRouter.php');
 $router = new AltoRouter();
 $page = $_GET['page'] ?? '404';
 $admincontroller = new AdminService();
+$coursecontroller = new CourseService();
 
 $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -96,6 +99,26 @@ $router->map('POST','/delete-news',function(){
 $router->map('GET|POST','/admin/store-news',function(){
     $newscontroller = new AdminNewsService();
     $newscontroller->createNewsFromForm();
+});
+
+$router->map('GET','/admin/courses',function(){
+    $coursecontroller = new CourseService();
+    $coursecontroller->showCourse();
+});
+
+$router->map('GET','/admin/get-courses-details/[i:id]',function($id){
+    $coursecontroller = new CourseService();
+    $coursecontroller->getCourse($id);
+});
+
+$router->map('POST','/delete-courses',function(){
+    $coursecontroller = new CourseService();
+    $coursecontroller->deleteCourse();
+});
+
+$router->map('GET|POST','/admin/store-courses',function(){
+    $coursecontroller = new CourseService();
+    $coursecontroller->createCourseForm();
 });
 
 

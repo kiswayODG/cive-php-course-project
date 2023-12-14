@@ -57,6 +57,41 @@ class UserRepository
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
         $stmt->execute([$user->getId()]);
     }
+    //Get user by name
+    public function getUserByUsername(string $username): ?User {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->execute([$username]);
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$userData) {
+        return null;
+        }
+        $user= new User();
+        $user -> setId($userData["id"]);
+        $user -> setUsername($userData["username"]);
+        $user ->setPassword($userData['password']);
+        $user->setEmail($userData['email']);
 
-   
+        return $user;
+        }
+
+    //Get user by name and password
+    public function getUserByNameAndPwd(string $username, string $password): ?User {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = ? and password= ?");
+        $stmt->execute([$username,$password]);
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$userData) {
+        return null;
+        }
+        
+        $user= new User();
+        $user -> setId($userData["id"]);
+        $user -> setUsername($userData["username"]);
+        $user ->setPassword($userData['password']);
+        $user->setEmail($userData['email']);
+        return $user;
+
+    }
+
+    
 }

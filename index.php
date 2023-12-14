@@ -26,9 +26,16 @@ $router->map('GET','/news-details/[i:id]',function($id){
     $ucontroller->news_details();
 });
 
+
+
 $router->map('GET','/index',function(){
     $ucontroller = new UserService();
     $ucontroller->index();
+});
+
+$router->map('GET','/login',function(){
+    $ucontroller = new UserService();
+    $ucontroller->user_login();
 });
 
 $router->map('GET','/admin',function(){
@@ -140,6 +147,11 @@ $router->map('POST','/delete-docs',function(){
 $router->map('GET|POST','/admin/store-docs',function(){
     $docscontroller = new AdminDocService();
     $docscontroller->createOrUpdateDocumentFromForm();
+});
+$router->map('GET|POST','/login-check',function(){
+    $ucontroller = new UserService();
+    $ucontroller->login_final();
+
 });
 
 

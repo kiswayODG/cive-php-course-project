@@ -9,6 +9,7 @@ require_once('src/services/administration/AdminNewsService.php');
 require_once('src/services/administration/AdminDocService.php');
 require_once('AltoRouter.php');
 
+
 $router = new AltoRouter();
 $page = $_GET['page'] ?? '404';
 $admincontroller = new AdminService();

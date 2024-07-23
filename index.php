@@ -21,6 +21,42 @@ $router->map('GET','/',function(){
     $ucontroller->index();
 });
 
+$router->map('GET','/gallery',function(){
+    $ucontroller = new UserService();
+    $ucontroller->gallery();
+});
+
+$router->map('GET','/articles',function(){
+    $ucontroller = new UserService();
+    $ucontroller->articles();
+});
+
+$router->map('GET','/article-details/[i:id]',function($id){
+    $ucontroller = new UserService();
+    $ucontroller->article_details($id);
+});
+
+$router->map('GET','/event-details/[i:id]',function($id){
+    $ucontroller = new UserService();
+    $ucontroller->article_details($id);
+});
+
+$router->map('GET','/events',function(){
+    $ucontroller = new UserService();
+    $ucontroller->events();
+});
+
+$router->map('GET','/course',function(){
+    $ucontroller = new UserService();
+    $ucontroller->courses();
+});
+
+$router->map('GET','/course-details/[i:id]',function($id){
+    $ucontroller = new UserService();
+    $ucontroller->course_details($id);
+});
+
+
 $router->map('GET','/news-details/[i:id]',function($id){
     $ucontroller = new UserService();
     $ucontroller->news_details();
@@ -150,7 +186,13 @@ $router->map('GET|POST','/admin/store-docs',function(){
 });
 $router->map('GET|POST','/login-check',function(){
     $ucontroller = new UserService();
-    $ucontroller->login_final();
+    $ucontroller->login_check();
+
+});
+
+$router->map('GET|POST','/login-out',function(){
+    $ucontroller = new UserService();
+    $ucontroller->logOut();
 
 });
 

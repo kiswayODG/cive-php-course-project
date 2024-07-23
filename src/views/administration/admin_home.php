@@ -1,4 +1,4 @@
-<?php //include_once "src/services/protect.php"; ?>
+<?php include_once "src/services/administration/protect.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,22 +24,10 @@
         <!-- Content Start -->
         <div class="content" >
             <?php include_once($_SERVER['DOCUMENT_ROOT'] .'/src/layouts/administration/topBar.php');?>
-      
-      
-
-
-           
-
-
-            
-          
-         <?php //include_once('../../layouts/administration/footer.php');?>
            
         </div>
-        <!-- Content End -->
 
 
-        <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 

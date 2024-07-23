@@ -35,8 +35,24 @@ class NewRepository
         return $news;
     }
 
+    public function getNewsAllByCat($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM news where `newclass`=$id");
+        $stmt->execute();
+        $news = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $author = $this->userRepo->getUserById($row['author']);
+            $class = $this->classRepo->getClassById($row['newclass']);
+            $lang = new Language();
+            $lang->setId($row['language']);
+
+            $new = new News($row['id'],$row['title'],$author,$row['pubdate'],$row['content'],$class,$row['illustration'],$lang);
+            $news[] = $new;
+        }
+        return $news;
+    }
+
     public function getRecentNews() {
-        $stmt = $this->pdo->prepare("SELECT * FROM news ORDER BY pubdate DESC LIMIT 6");
+        $stmt = $this->pdo->prepare("SELECT * FROM news ORDER BY pubdate DESC LIMIT 3");
         $stmt->execute();
         $news = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

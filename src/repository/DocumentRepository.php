@@ -6,6 +6,7 @@ class DocumentRepository
 {
     private $pdo;
     private $languageRepo;
+    private $courseRepo;
 
     public function __construct(PDO $pdo)
     {
@@ -17,22 +18,32 @@ class DocumentRepository
     {
         $stmt = $this->pdo->prepare("SELECT * FROM documents");
         $stmt->execute();
-        $documents = [];
+        $documentsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $language = $this->languageRepo->getLanguageById($row['language']);
-
-            $document = new Document($row['id'], $row['title'], $row['docs'], $language);
-            $documents[] = $document;
+        foreach ($documentsData as $docData) {
+            $docs[] = $this->rowMapper($docData);
         }
 
-        return $documents;
+        return $docs;
+    }
+
+    public function getDocumentsAllWithoutCourse()
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM documents where course_id IS NULL");
+        $stmt->execute();
+        $documentsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($documentsData as $docData) {
+            $courses[] = $this->rowMapper($docData);
+        }
+
+        return $courses;
     }
 
     public function saveDocument(Document $document)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO documents (`title`, `docs`, `language`) VALUES (?, ?, ?)");
-        $stmt->execute([$document->getTitle(), $document->getDocs(), $document->getLanguage()->getId()]);
+        $stmt = $this->pdo->prepare("INSERT INTO documents (`title`, `docs`,`course_id`, `language`) VALUES (?, ?, ?,?)");
+        $stmt->execute([$document->getTitle(), $document->getDocs(), ($document->getCourse() ? $document->getCourse()->getId() : null), $document->getLanguage()->getId()]);
     }
 
     public function getDocumentById($id)
@@ -41,35 +52,29 @@ class DocumentRepository
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($row) {
-            $language = $this->languageRepo->getLanguageById($row['language']);
-
-            $document = new Document($row['id'], $row['title'], $row['docs'], $language);
-
-            return $document;
-        } else {
+        if (!$row) {
             return null;
         }
+
+        return $this->rowMapper($row);
     }
 
     public function updateDocument(Document $document)
     {
-        // Retrieve the existing document path
         $stmt = $this->pdo->prepare("SELECT `docs` FROM documents WHERE id = ?");
         $stmt->execute([$document->getId()]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            // Remove the existing physical document file
             $existingDocumentPath = $row['docs'];
             if (file_exists($existingDocumentPath)) {
                 unlink($existingDocumentPath);
             }
         }
 
-        // Update the database record with the new document information
-        $stmt = $this->pdo->prepare("UPDATE documents SET `title` = ?, `docs` = ?, `language` = ? WHERE id = ?");
-        $stmt->execute([$document->getTitle(), $document->getDocs(), $document->getLanguage()->getId(), $document->getId()]);
+
+        $stmt = $this->pdo->prepare("UPDATE documents SET `title` = ?, `docs` = ?, `course_id` = ?, `language` = ? WHERE id = ?");
+        $stmt->execute([$document->getTitle(), $document->getDocs(), ($document->getCourse() ? $document->getCourse()->getId() : null), $document->getLanguage()->getId(), $document->getId()]);
     }
 
     public function deleteDocument(Document $document)
@@ -91,6 +96,56 @@ class DocumentRepository
         $stmt = $this->pdo->prepare("DELETE FROM documents WHERE id = ?");
         return $stmt->execute([$document->getId()]);
     }
-}
 
-?>
+    public function getCourseId($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM courses WHERE id = ?");
+        $stmt->execute([$id]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$data) {
+            return null;
+        }
+
+        $course = new Course();
+        $course->setId($data['id']);
+        $course->setCourseName($data['coursename']);
+        $course->setCourseIntroduction($data['course_introduction']);
+        $course->setProvider($data['provider']);
+        $course->setOutline($data['outline']);
+
+        if (isset($data['doc_id'])) {
+            $document = $this->getDocumentById($data['doc_id']);
+            $course->setDocument($document);
+        }
+
+        return $course;
+    }
+
+    public  function rowMapper($data)
+    {
+        $document = new Document();
+        $document->setId($data['id']);
+        $document->setTitle($data['title']);
+        $document->setDocs($data['docs']);
+        $document->setDetail($data['detail']);
+
+        if (isset($data['course_id'])) {
+            $course = $this->getCourseId($data['course_id']);
+            $document->setCourse($course);
+        }
+
+        if (isset($data['category'])) {
+            $category = new DocCategory();
+            $category->setCategoryName($data['category']);
+            $document->setDocCategory($category);
+        }
+
+        if (isset($data['language'])) {
+            $language = new Language();
+            $language->setId($data['language']);
+            $document->setLanguage($language);
+        }
+
+        return $document;
+    }
+}

@@ -1,17 +1,15 @@
 <?php
 
+include_once("src/model/DocCategory.php");
 class Document {
     private  $id;
     private  $title;
     private  $docs;
+    private $course;
     private  $language;
+    private $category;
+    private $detail;
 
-    public function __construct( $id="",  $title="",  $docs="",  $language=new Language()) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->docs = $docs;
-        $this->language = $language;
-    }
 
     public function getId() {
         return $this->id;
@@ -19,6 +17,30 @@ class Document {
 
     public function setId( $id) {
         $this->id = $id;
+    }
+
+    public function getDocCategory() {
+        return $this->category;
+    }
+
+    public function setDetail($detail) {
+        $this->detail = $detail;
+    }
+
+    public function getCourse() {
+        return $this->course;
+    }
+
+    public function setCourse($course) {
+        $this->course = $course;
+    }
+
+    public function getDetail() {
+        return $this->detail;
+    }
+
+    public function setDocCategory( $category) {
+        $this->category = $category;
     }
 
     public function getTitle() {
@@ -44,6 +66,8 @@ class Document {
     public function setLanguage( $language) {
         $this->language = $language;
     }
+
+   
 }
 
 

@@ -16,12 +16,12 @@ class News {
     public function __construct(
          $id="",
          $title="",
-         $author=new User(),
+         $author=null,
          $pubDate="",
          $content="",
-         $newClass=new NewClass(),
+         $newClass=null,
          $illustration="",
-         $language=new Language()
+         $language=null
     ) {
         $this->id = $id;
         $this->title = $title;

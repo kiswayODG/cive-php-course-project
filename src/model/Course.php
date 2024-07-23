@@ -1,60 +1,88 @@
 <?php
 
-class Course {
-private  $id;
-private  $courseName;
-private  $courseIntroduction;
-private  $language;
-private  $outline;
+include_once('src/model/Document.php');
+class Course
+{
+    private  $id;
+    private  $courseName;
+    private  $courseIntroduction;
 
-public function __construct( $id,  $courseName,  $courseIntroduction,  $language,  $outline) {
-$this->id = $id;
-$this->courseName = $courseName;
-$this->courseIntroduction = $courseIntroduction;
-$this->language = $language;
-$this->outline = $outline;
-}
+    private  $provider;
+    private  $document;
+    private  $language;
+    private  $outline;
 
-public function getId() {
-return $this->id;
-}
+   
+    public function getId()
+    {
+        return $this->id;
+    }
 
-public function setId(int $id) {
-$this->id = $id;
-}
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-public function getCourseName() {
-return $this->courseName;
-}
+    public function getProvider()
+    {
+        return $this->provider;
+    }
 
-public function setCourseName( $courseName) {
-$this->courseName = $courseName;
-}
+    public function setProvider($provider)
+    {
+        $this->provider = $provider;
+    }
 
-public function getCourseIntroduction() {
-return $this->courseIntroduction;
-}
+    public function getDocument()
+    {
+        return $this->document;
+    }
 
-public function setCourseIntroduction( $courseIntroduction) {
-$this->courseIntroduction = $courseIntroduction;
-}
+    public function setDocument($document)
+    {
+        $this->document = $document;
+    }
 
-public function getLanguage() {
-return $this->language;
-}
+    public function getCourseName()
+    {
+        return $this->courseName;
+    }
 
-public function setLanguage( $language) {
-$this->language = $language;
-}
+    public function setCourseName($courseName)
+    {
+        $this->courseName = $courseName;
+    }
 
-// Getter for outline
-public function getOutline() {
-return $this->outline;
-}
+    public function getCourseIntroduction()
+    {
+        return $this->courseIntroduction;
+    }
 
-public function setOutline( $outline) {
-$this->outline = $outline;
-}
-}
+    public function setCourseIntroduction($courseIntroduction)
+    {
+        $this->courseIntroduction = $courseIntroduction;
+    }
 
-?>
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    // Getter for outline
+    public function getOutline()
+    {
+        return $this->outline;
+    }
+
+    public function setOutline($outline)
+    {
+        $this->outline = $outline;
+    }
+
+  
+}

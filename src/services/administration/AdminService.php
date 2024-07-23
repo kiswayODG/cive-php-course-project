@@ -36,8 +36,8 @@ class AdminService
          $user = new User();
          $user->setUsername($_POST["uname"]);
          $user->setEmail($_POST["email"]);
-         $user->setPassword(password_hash($_POST["password"], PASSWORD_DEFAULT));
-
+         $user->setPassword($_POST["password"]);
+         echo $user->getPassword();
          $this->userRepo->saveUser($user);
          $actionResult = "User " . $user->getUsername() . " created with success !";
          $_SESSION['actionResult'] = $actionResult;

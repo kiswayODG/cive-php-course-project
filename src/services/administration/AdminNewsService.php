@@ -145,6 +145,7 @@ class AdminNewsService
          $targetDir = "resources/storage/";
 
          if (!empty($_FILES["illustration"]["name"])) {
+            
             $news->setIllustration($_FILES["illustration"]["name"]);
             $targetFile = $targetDir . basename($_FILES["illustration"]["name"]);
 
@@ -170,7 +171,7 @@ class AdminNewsService
          } elseif ($_POST["submit"] == "update") {
             $news->setId($_POST['news_id']);
             $this->newsRepo->updateNews($news);
-            $actionResult = "News " . $news->getTitle() . " updated with success!";
+            $actionResult = $news->getIllustration();
          }
 
          $_SESSION['actionResult'] =  $actionResult;

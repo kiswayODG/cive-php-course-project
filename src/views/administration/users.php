@@ -1,3 +1,4 @@
+<?php include_once "src/services/administration/protect.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +22,6 @@
         <?php include_once('src/layouts/administration/sideBar.php'); ?>
 
 
-        <!-- Content Start -->
         <div class="content">
             <?php include_once('src/layouts/administration/topBar.php'); ?>
 
@@ -87,8 +87,7 @@
                 </div>
             </div>
 
-            <?php //include_once('../../layouts/administration/footer.php');
-            ?>
+
         </div>
     </div>
     <?php include_once('addUpdateUser.php'); ?>
@@ -98,7 +97,6 @@
 
 
 </body>
-<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
@@ -111,7 +109,6 @@
 <script src="/resources/administration/lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="/resources/administration/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-<!-- Template Javascript -->
 <script src="/resources/administration/js/main.js"></script>
 <script>
     $(document).ready(function() {

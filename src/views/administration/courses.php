@@ -1,13 +1,16 @@
+<?php include_once "src/services/administration/protect.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="utf-8">
-    <title>Website administration</title>
+    <title>Luban website administration</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
 
     <?php
     include_once('src/layouts/administration/style_dependancies.php'); ?>
@@ -16,22 +19,18 @@
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
 
-        <?php //include_once('src/layouts/administration/spinner.php'); ?>
+        <?php include_once('src/layouts/administration/spinner.php'); 
+        ?>
 
         <?php include_once('src/layouts/administration/sideBar.php'); ?>
 
 
-        <!-- Content Start -->
         <div class="content">
             <?php include_once('src/layouts/administration/topBar.php'); ?>
-      
-      
 
-                
+
             <div class="col-12 p-0">
                 <div class=" rounded h-100 p-4">
-
-
                     <h4 class="mb-4 mt-4">Course table</h4>
                     <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal" data-bs-target="#coursesModal">Add course</button>
                     <p class="<?php echo isset($_SESSION['actionResult']) ? 'alert alert-success' : '' ?> "><?php echo isset($_SESSION['actionResult']) ? $_SESSION['actionResult'] : '';
@@ -44,21 +43,23 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Course name</th>
                                     <th scope="col">Course introduction</th>
-                                    <th scope="col">Outline</th>
+                                    <th scope="col">Provider</th>
+                                    <!-- <th scope="col">Outline</th> -->
+                                    <th scope="col">Document</th>
                                     <th scope="col">Action</th>
-                                   
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                               
                                 foreach ($courses as $course) {
                                     echo '<tr>';
                                     echo '<th scope="row">' . $course->getId() . '</th>';
-                                    echo '<td>' . $course->getCourseIntroduction() . '</td>';
                                     echo '<td>' . $course->getCourseName() . '</td>';
-                                    echo '<td>' . $course->getOutline() . '</td>';
-    
+                                    echo '<td>' . $course->getCourseIntroduction() . '</td>';
+                                    echo '<td>' . $course->getProvider() . '</td>';
+                                    // echo '<td>' . $course->getOutline() . '</td>';
+                                    echo '<td>' . ($course->getDocument() ? $course->getDocument()->getTitle() : 'No document') . '</td>';
                                     echo '<td>';
                                     echo '<button type="submit" value="' . $course->getId() . '" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#coursesModal" data-courseid="' . $course->getId() . '">Edit</button> &nbsp;&nbsp;';
                                     echo '<button type="submit" value="' . $course->getId() . '" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal' . $course->getId() . '" data-courseid="' . $course->getId() . '">Delete</button> &nbsp;&nbsp;';
@@ -93,12 +94,12 @@
                         </table>
                     </div>
                 </div>
-            </div>    
+            </div>
         </div>
     </div>
 
-    <?php  include_once('addUpdateCourse.php') ;?>
-    <!-- JavaScript Libraries -->
+    <?php include_once('addUpdateCourse.php'); ?>
+
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
@@ -124,11 +125,21 @@
             "dom": 'rtip',
         })
 
+        ClassicEditor
+            .create(document.querySelector('#outline'))
+            .then(editor => {
+                window.editor = editor;
+                Editor = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
         $('#coursesModal').on('show.bs.modal', function(event) {
-           
+
             var button = $(event.relatedTarget);
             var courseId = button.data('courseid');
-          
+
             var modal = $(this);
             if (courseId) {
                 $.ajax({
@@ -138,18 +149,21 @@
                     success: function(data) {
                         modal.find('#courseName').val(data.courseName);
                         modal.find('#courseIntroduction').val(data.courseIntroduction);
-                        modal.find('#outline').val(data.outline);
-                        modal.find('#language').val(data.language);
+                        modal.find('#provider').val(data.provider);
+                        Editor.setData(data.outline);
+                        modal.find('#lang').val(data.language);
+                        modal.find('#document').val(data.document);
                         modal.find('#id').val(courseId);
                         $('#submit').val('update');
                     },
                     error: function(error) {
+                        alert(courseId);
                         console.log('Error fetching user details:', error);
                     }
                 });
             }
             $('#coursesModal').on('hidden.bs.modal', function() {
-               
+
                 modal.find('#courseName').val('');
                 modal.find('#courseIntroduction').val('');
                 modal.find('#outline').text('');

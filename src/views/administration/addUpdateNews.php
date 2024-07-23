@@ -9,7 +9,6 @@
                 <input hidden name="news_id" id="id">
                 <div class="modal-body row">
                     <input hidden type="text" value='2' name="language">
-                    <!-- Première colonne -->
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="title" class="form-label">News Title</label>
@@ -42,6 +41,7 @@
                             <label for="illustration" class="form-label">Illustration</label>
                             <input type="file" class="form-control" name="illustration" id="illustration">
                             <br>
+                            <label style="display: none;" for="old_illustration" class="form-label" id="old_illustrationlab">Old Illustration</label>
                             <input type="text" style="display: none;" class="form-control" name="old_illustration" id="old_illustration">
                         </div>
 
@@ -49,7 +49,6 @@
                             <label for="content" class="form-label">Content</label>
                             <textarea style="height: 300px;" class="form-control" name="content" id="editor"></textarea>
                         </div>
-                        <!-- Boutons dans la deuxième colonne -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" name="submit" value="create" id="submit" class="btn btn-success">Validate</button>

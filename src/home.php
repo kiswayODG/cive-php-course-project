@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name='copyright' content=''>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
+
     <?php include_once('src/layouts/style_dependancies.php') ?>
 </head>
 
@@ -17,49 +17,65 @@
 
     <?php include_once('src/layouts/slider.php') ?>
 
-
-
-    <section class="portfolio section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2>Recent news</h2>
-                    <img src="img/section-img.png" alt="#">
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+    <section class="blog section" id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Stay Informed with Recent Articles.</h2>
+                        <p>Explore the latest insights and updates in the world of Luban as we keep you informed with our recent articles, providing valuable information and exciting content</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-12">
-                <div class="owl-carousel portfolio-slider">
 
-                    <?php
-                    foreach ($recent_news as $news) {
-                        echo '<div class="single-pf">';
-                        echo '<h4>' . $news->getTitle() . '</h4>';
-                        echo '<img height:"200px" src="resources/storage/' . $news->getIllustration() . '" alt="#">';
-                        echo '<p>' . limitWords($news->getContent(), 50) . '...</p>';
-                        echo '<a href="portfolio-details.html" class="btn">View Details</a>';
-                        echo '</div>';
-                    }
-                    ?>
+            <div class="row">
 
-                </div>
+                <?php
+
+                foreach ($recent_news as $news) {
+                ?>
+
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-news">
+                            <div class="news-head">
+                                <!-- Assurez-vous que l'attribut src contient le chemin correct de l'illustration -->
+                                <img src="<?php echo 'resources/storage/' . $news->getIllustration(); ?>" alt="#">
+                            </div>
+                            <div class="news-body">
+                                <div class="news-content">
+                                    <div class="date"><?php echo $news->getPubDate(); ?></div>
+                                    <h2><a href="#"><?php echo $news->getTitle(); ?></a></h2>
+                                    <p class="text"><?php echo  limitWords($news->getContent(), 20); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php
+                }
+                ?>
+
             </div>
         </div>
-    </div>
-</section>
-<?php
-function limitWords($string, $word_limit)
-{
-    $words = explode(" ", $string);
-    return implode(" ", array_splice($words, 0, $word_limit));
-}
-?>
+    </section>
 
+
+
+
+    <?php
+    function limitWords($string, $word_limit, $ellipsis = '.....')
+    {
+        $words = explode(" ", $string);
+        $limitedWords = array_splice($words, 0, $word_limit);
+        $limitedText = implode(" ", $limitedWords);
+
+        if (count($words) > $word_limit) {
+            $limitedText .= $ellipsis;
+        }
+
+        return $limitedText;
+    }
+    ?>
     <?php include_once('src/layouts/footer.php') ?>
 </body>
 <?php include_once('src/layouts/js_scripts_dependancies.php') ?>

@@ -32,7 +32,7 @@ class User{
         return $this->password;
     }
 
-    public function setPassword( $password) {
+    public function setPassword($password) {
         $this->password = $password;
     }
 

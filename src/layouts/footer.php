@@ -1,5 +1,4 @@
 <footer id="footer" class="footer ">
-    <!-- Footer Top -->
     <div class="footer-top">
         <div class="container">
             <div class="row">
@@ -16,17 +15,16 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Gallery</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Articles</a></li>
+                                    <li><a href="/"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
+                                    <li><a href="/gallery"><i class="fa fa-caret-right" aria-hidden="true"></i>Gallery</a></li>
+                                    <li><a href="/articles"><i class="fa fa-caret-right" aria-hidden="true"></i>Articles</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <ul>
                                     
-                                <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Event</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact us</a></li>
-                                    <!-- <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li> -->
+                                <li><a href="/events"><i class="fa fa-caret-right" aria-hidden="true"></i>Events</a></li>
+                                    <li><a href="/course"><i class="fa fa-caret-right" aria-hidden="true"></i>Courses</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -36,8 +34,7 @@
             </div>
         </div>
     </div>
-    <!--/ End Footer Top -->
-    <!-- Copyright -->
+    
     <div class="copyright">
         <div class="container">
             <div class="row">
@@ -48,5 +45,5 @@
             </div>
         </div>
     </div>
-    <!--/ End Copyright -->
 </footer>
+

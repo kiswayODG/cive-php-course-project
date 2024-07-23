@@ -75,7 +75,7 @@ class UserRepository
         }
 
     //Get user by name and password
-    public function getUserByNameAndPwd(string $username, string $password): ?User {
+    public function getUserByNameAndPwd( $username,  $password): ?User {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = ? and password= ?");
         $stmt->execute([$username,$password]);
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);

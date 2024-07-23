@@ -1,3 +1,4 @@
+<?php include_once "src/services/administration/protect.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +19,7 @@
         }
     </style>
 
-    <?php include_once($_SERVER['DOCUMENT_ROOT'] . '/src/layouts/administration/style_dependancies.php'); ?>
+    <?php include_once( 'src/layouts/administration/style_dependancies.php'); ?>
 </head>
 
 <body>
@@ -37,11 +38,8 @@
         <?php include_once('src/layouts/administration/sideBar.php'); ?>
 
 
-        <!-- Content Start -->
         <div class="content">
             <?php include_once('src/layouts/administration/topBar.php'); ?>
-
-
 
             <div class="col-12 p-0">
                 <div class=" rounded h-100 p-4">
@@ -120,10 +118,7 @@
             <?php include_once('addUpdateNews.php'); ?>
 
         </div>
-        <!-- Content End -->
-
-
-        <!-- Back to Top -->
+        
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
@@ -178,8 +173,10 @@
                         modal.find('#author').val(data.author);
                         modal.find('#pubdate').val(data.pubdate);
                         modal.find('#newclass').val(data.newclass);
+                        $("#old_illustrationlab").show();
+                        modal.find('#old_illustrationlab').val("Old illustration ");
                         $("#old_illustration").show();
-                        modal.find('#old_illustration').val("Old illustration :"+data.illustration);
+                        modal.find('#old_illustration').val(data.illustration);
                         Editor.setData(data.content);
                         modal.find('#head').text('News editing');
                         $('#submit').val('update');

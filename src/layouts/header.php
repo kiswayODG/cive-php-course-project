@@ -17,24 +17,19 @@
                         <div class="main-menu">
                             <nav class="navigation">
                                 <ul class="nav menu">
-                                    <li class="active"><a href="/">Home <i class="icofont-rounded-down"></i></a>
+                                    <li class=""><a href="/index">Home <i class="icofont-rounded-down"></i></a>
                                         <ul class="dropdown">
                                             <li><a href="http://sspu.edu.cn/">About SSPU</a></li>
                                             <li><a href="https://www.univ-bobo.gov.bf/accueil">About UNB</a></li>
                                             <li><a href="https://www.huawei.com/cn/">About HUAWEI</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Gallery<i class="icofont-rounded-down"></i></a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">All</a></li>
-                                            <li><a href="index.html">HUAWEI</a></li>
-                                            <li><a href="index.html">SSPU</a></li>
-                                        </ul></li>
-                                    <li><a href="#">Articles <i class="icofont-rounded-down"></i></a></li>
-                                    <li><a href="#">Events <i class="icofont-rounded-down"></i></a>
+                                    <li><a href="/gallery">Gallery</a></li>
+                                    <li><a href="/articles">Articles </a></li>
+                                    <li><a href="/events">Events </a>
                                 
 
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="/course">Course</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -42,11 +37,36 @@
                     </div>
                     <div class="col-lg-2 col-12">
                         <div class="get-quote">
-                            <a href="appointment.html" class="btn">Language: English</a>
+                            <a href="#" class="btn">Language: English</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var currentPath = window.location.pathname;
+        var menuItems = document.querySelectorAll('.nav.menu li');
+        var lastActiveItem = null;
+
+        menuItems.forEach(function(item) {
+            item.classList.remove('active');
+            var link = item.querySelector('a');
+            var linkPath = link.getAttribute('href');
+
+            if (currentPath === linkPath || currentPath.startsWith(linkPath)) {
+                item.classList.add('active');
+                lastActiveItem = item;
+                return;
+            }
+        });
+
+        if (!document.querySelector('.nav.menu li.active') && lastActiveItem) {
+            lastActiveItem.classList.add('active');
+        }
+    });
+</script>
+
 </header>

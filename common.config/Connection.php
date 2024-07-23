@@ -2,29 +2,28 @@
 
 class Connection
 {
-    private  $host = "localhost:3306";
-    private  $db = "projet";
-    private  $login = "root";
-    private  $password = "";
+    private  $host = 'sql308.infinityfree.com';
+    private  $db = 'if0_36959414_projet';
+    private  $login = 'if0_36959414';
+    private  $password = 'lc4sdnuMRNeU';
+
+   
 
     public function conn()
     {
-        $bddconn='';
-        try
-        {
-            $bddconn = new PDO('mysql:host='.$this->host.';dbname='.$this->db, $this->login, $this->password);
-        }
-        catch(PDOException $e)
-        {
+        $bddconn = '';
+        try {
+            $bddconn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db, $this->login, $this->password);
+        } catch (PDOException $e) {
             echo "Connection failed " . $e->getMessage();
         }
         return $bddconn;
     }
-   public function test_input( $data ){
+    public function test_input($data)
+    {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
-        return $data; 
+        return $data;
     }
-
 }

@@ -2,12 +2,10 @@
 
 class Connection
 {
-    private  $host = 'sql308.infinityfree.com';
-    private  $db = 'if0_36959414_projet';
-    private  $login = 'if0_36959414';
-    private  $password = 'lc4sdnuMRNeU';
-
-   
+    private  $host = "localhost:3306";
+    private  $db = "projet";
+    private  $login = "root";
+    private  $password = "";
 
     public function conn()
     {
